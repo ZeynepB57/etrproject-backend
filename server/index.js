@@ -10,11 +10,7 @@ app.use(express.json());
 
 // PostgreSQL bağlantısı
 const pool = new Pool({
-  host: "localhost",
-  user: "postgres",
-  port: 5432,
-  password: "134226",
-  database: "ertsoftdb"
+  connectionString: `postgresql://demopostgre:XfFZGg4dHmXxkKoA6gBmdl7YDwy2SgNn@dpg-ctt6iqdumphs73fs1qig-a.oregon-postgres.render.com/demopostgre`+"?sslmode=require"
 });
 
 // SSL doğrulamasını devre dışı bırakmak için https.Agent kullanma
@@ -104,7 +100,7 @@ const fetchDataAndInsert = async () => {
 };
 
 // API verilerini eklemek için otomatik olarak her dakika çağır
-setInterval(fetchDataAndInsert, 15000); // 60000ms = 1 dakika
+setInterval(fetchDataAndInsert, 30000); // 60000ms = 1 dakika
 
 // Veritabanından verileri çek
 app.get('/api/accounts', async (req, res) => {
